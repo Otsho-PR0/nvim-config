@@ -2,7 +2,7 @@ local servers =
 {
 	"lua_ls",
 	"clangd",
-	"chsarp-ls",
+	"csharp_ls",
 	"gopls",
 	"neocmake",
 	"slangd",

@@ -261,9 +261,18 @@ return
 				}
 			}
 
+			dap.adapters.cppdbg = {
+				id = 'cppdbg',
+				type = 'executable',
+				command = 'OpenDebugAD7.cmd',
+				options = {
+					detached = false
+				}
+			}
+
 			dap.configurations.cpp = {
 				{
-					name = "Launch file",
+					name = "Launch file (codelldb)",
 					type = "codelldb",
 					request = "launch",
 					program = function()
@@ -271,6 +280,28 @@ return
 					end,
 					cwd = '${workspaceFolder}',
 					stopOnEntry = false
+				},
+				{
+					name = "Launch file (cppdbg)",
+					type = "cppdbg",
+					request = "launch",
+					program = function()
+						return vim.fn.input('Path to executable: ', '', 'file')
+					end,
+					cwd = '${workspaceFolder}',
+					stopAtEntry = false,
+				},
+				{
+					name = 'Attach to gdbserver :1234',
+					type = 'cppdbg',
+					request = 'launch',
+					MIMode = 'gdb',
+					miDebuggerServerAddress = 'localhost:1234',
+					miDebuggerPath = 'gdb',
+					cwd = '${workspaceFolder}',
+					program = function()
+						return vim.fn.input('Path to executable: ', '', 'file')
+					end,
 				},
 			}
 
